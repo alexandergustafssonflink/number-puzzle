@@ -12,6 +12,9 @@ let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 0]
  }
 
 const restartButton = document.querySelector('.restart');
+ restartButton.addEventListener("click", () => {
+window.location.reload()
+ })
 
 numbers = shuffleNumbers(numbers);
 
@@ -19,16 +22,9 @@ let numberDivs = document.querySelectorAll(".numberDiv")
     
  numbers.map((number, i) => {
      numberDivs[i].innerText = number
-
  }) 
 
 let indexOfNull = numbers.indexOf(0) 
- restartButton.addEventListener("click", () => {
-    let newNumbers = shuffleNumbers(numbers)
-    newNumbers.map((number, i) => {
-        numberDivs[i].innerText = number
- })
- })
 
 numberDivs.forEach((numberDiv) => {
     if (numberDiv.innerText == 0) {
@@ -71,7 +67,6 @@ numberDivs.forEach((numberDiv) => {
     checkForWin(numbers)
     })
 })
-
 
 function moveNumbersInRow (numbers, indexOfClickedNumber) {
    let a = numbers[indexOfClickedNumber];
