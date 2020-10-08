@@ -1,14 +1,14 @@
 let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 0]
 
- function shuffleNumbers(array) {
+ function shuffleNumbers(numbers) {
     let j, x, i;
-    for (i = array.length - 1; i > 0; i--) {
+    for (i = numbers.length - 1; i > 0; i--) {
         j = Math.floor(Math.random() * (i + 1));
-        x = array[i];
-        array[i] = array[j];
-        array[j] = x;
+        x = numbers[i];
+        numbers[i] = numbers[j];
+        numbers[j] = x;
     }
-    return array;
+    return numbers;
  }
 
 const restartButton = document.querySelector('.restart');
@@ -45,9 +45,8 @@ numberDivs.forEach((numberDiv) => {
         let rowOfClickedNumber = checkRowOfNumber(indexOfClickedNumber)
         let columnOfClickedNumber = checkColumnOfNumber(indexOfClickedNumber)
 
-        let sameRow = checkIfClickedNumberAndNullHasSameRow(rowOfClickedNumber, rowOfNull)
-        let sameColumn = checkIfClickedNumberAndNullHasSameColumn(columnOfClickedNumber, columnOfNull)
-    if (sameRow) {
+
+    if (rowOfClickedNumber == rowOfNull) {
         let newNumbers =  moveNumbersInRow(numbers, indexOfClickedNumber)
         indexOfNull = newNumbers.indexOf(0); 
         newNumbers.map((number, i) => {
@@ -55,7 +54,7 @@ numberDivs.forEach((numberDiv) => {
  }) 
  }
 
-   if (sameColumn) {
+   if (columnOfClickedNumber == columnOfNull) {
         let newNumbers =  moveNumbersInColumn(numbers, indexOfClickedNumber)
         indexOfNull = newNumbers.indexOf(0); 
         newNumbers.map((number, i) => {
@@ -221,29 +220,12 @@ function checkForWin(numbers) {
     }
 }
  
-function checkIfClickedNumberAndNullHasSameRow (rowOfClickedNumber, rowOfNull) {
-    if (rowOfClickedNumber == rowOfNull) {
-        return true; 
-    } else {
-        return false; 
-    }
-}
-
-function checkIfClickedNumberAndNullHasSameColumn (columnOfClickedNumber, columnOfNull) {
-    if (columnOfClickedNumber == columnOfNull) {
-        return true; 
-    } else {
-        return false; 
-    }
-}
-
-
-function checkRowOfNumber (number) {
-    if (number >= 0 && number <= 4) {
+function checkRowOfNumber (n) {
+    if (n >= 0 && n <= 4) {
         return 1; 
-    } else if (number >=5 && number < 10) {
+    } else if (n >=5 && n < 10) {
         return 2; 
-    } else if (number >=10 && number < 15) {
+    } else if (n >=10 && n < 15) {
         return 3; 
     }
 }
