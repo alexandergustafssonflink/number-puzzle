@@ -35,7 +35,7 @@ body {
 }
 
 .null {
-  border: none;
+  border: solid white;
   color: white;
 }
 
